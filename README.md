@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # Evaluación 2: La Raiz que se Esconde
 
 Universidad Católica del Maule - Lab evaluado 2
@@ -45,6 +44,7 @@ Para un detalle de las dependencias del proyecto, estas se encuentran en el arch
 ## Scripts
 
 | Archivo | Descripcion |
+| --- | --- |
 | evaluacion.py | Llama a las funciones creadas por los demas archivos para realizar la comparativa de metodos en cada funcion |
 | funciones.py | Define las funciones matemáticas, sus derivadas y los datos iniciales para cada caso |
 | biseccion.py | Implementa el método de bisección |
@@ -60,6 +60,7 @@ Para un detalle de las dependencias del proyecto, estas se encuentran en el arch
 ## Funciones con raiz conocida
 
 | Categoria | Funcion | Intervalo  | Raiz conocida |
+| --- | --- | --- | --- |
 | polinomica | x³ - x - 2 | Intervalo: [1, 2]; x₀ = 1, x₁ = 2 | 1.5213797068045676 |
 | polinomica_raiz_doble | (x - 2)² | Sin intervalo; x₀ = 1.2, x₁ = 2.5 | 2 |
 | logaritmica | ln(x) + x - 4 | Intervalo: [2, 3]; x₀ = 2, x₁ = 3 | 2.9262710624435009 |
@@ -73,6 +74,3 @@ La razon de que algunas funciones posean un intervalo de evaluacion es para que 
 1. Tamaño de paso para metodos cerrados, estimación inicial x₀ y x₁ para metodos abiertos.
 2. Tolerancia de 0.000001 y maximo de 100 interaciones.
 3. Cuando el caso tiene un intervalo, se calcula el producto de f(a) y f(b) para observar si hay cambio de signo.
-=======
-# evaluacion2-busqueda-raices
->>>>>>> dfb5eb3ea5cf5c67816c8ff5fb6431e9a036589a
