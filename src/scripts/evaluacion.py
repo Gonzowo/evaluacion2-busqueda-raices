@@ -67,6 +67,7 @@ for indice, caso in enumerate(casos):
             error = ""
         fila = {
             "funcion": nombre,
+            "expresion": caso["expresion"],
             "metodo": metodo,
             "iteraciones": salida["iteraciones"],
             "raiz": raiz,
@@ -82,7 +83,9 @@ for indice, caso in enumerate(casos):
                   "error =", error, "estado =", fila["estado"])
 
     graficar_funcion(caso, carpeta_graficos, raiz_grafico)
-    graficar_convergencia(resultados_caso, carpeta_graficos, nombre)
+    graficar_convergencia(
+        resultados_caso, carpeta_graficos, nombre, caso["expresion"]
+    )
 
 guardar_resumen_convergencia(resultados, carpeta_datos)
 graficar_resumen(resultados, carpeta_graficos)

@@ -6,6 +6,7 @@ matplotlib.use("Agg")
 
 import matplotlib.pyplot as plt
 import numpy as np
+from textwrap import fill
 
 
 def graficar_funcion(caso, carpeta, raiz):
@@ -38,7 +39,7 @@ def graficar_funcion(caso, carpeta, raiz):
     plt.close()
 
 
-def graficar_convergencia(resultados, carpeta, nombre):
+def graficar_convergencia(resultados, carpeta, nombre, expresion):
     plt.figure(figsize=(8, 5))
     piso_error = 1e-12
     for r in resultados:
@@ -49,7 +50,7 @@ def graficar_convergencia(resultados, carpeta, nombre):
             plt.semilogy(x, error, marker="o", label=r["metodo"])
     plt.xlabel("Iteración")
     plt.ylabel("Error aproximado")
-    plt.title("Error por iteración: " + nombre)
+    plt.title(f"Error por iteración: {nombre}\nf(x) = {expresion}")
     plt.grid()
     plt.legend()
     plt.tight_layout()
@@ -73,7 +74,12 @@ def graficar_resumen(resultados, carpeta):
     plt.xticks(posiciones + ancho * len(metodos) / 2, funciones, rotation=25)
     plt.xlabel("Función")
     plt.ylabel("Iteraciones")
-    plt.title("Iteraciones por método y función")
+    expresiones = sorted(set(r["expresion"] for r in resultados))
+    detalle_funciones = fill("Funciones: " + "; ".join(expresiones), width=80)
+    plt.title(
+        "Iteraciones por método y función\n" + detalle_funciones,
+        fontsize=10,
+    )
     plt.legend()
     plt.tight_layout()
     plt.savefig(f"{carpeta}/resumen_iteraciones.png")
