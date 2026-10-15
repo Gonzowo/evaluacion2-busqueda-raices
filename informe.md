@@ -22,7 +22,9 @@ La comparación realizada registra el número de iteraciones requerido por cada 
 
 Para la función polinómica con raíz doble, el intervalo se deja sin definir porque la función toca el eje en x=2 sin cambiar de signo, el resto de las cinco funciones con raíz simple tienen intervalo porque sus extremos se eligieron para que la función cambie de signo (teorema de Bolzano).
 
-
+## Criterios de parada para los metodos
+- Tolerancia de 0.000001
+- Tope de iteraciones de 100
 ## Resultados de convergencia
 
 La tabla resume las iteraciones registradas por los métodos. Todos alcanzaron el criterio de parada antes del máximo de iteraciones.
@@ -65,12 +67,12 @@ Punto fijo, secante, Newton y Newton mejorado no necesitan el intervalo con camb
 # 6.4 En la función que toca el eje x (raíz doble): ¿qué métodos fallan o no aplican y cuál se comporta mejor? ¿Por qué?
 Al ser la funcion (x - 2)^2 
 Bisección y falsa posición no aplican porque, al no haber un cambio de signo, no es posible aplicar el teorema de Bolzano.
-Punto fijo y newton realizaron la misma cantidad de iteraciones, alcanzando el mismo valor 0.1999921875
+Punto fijo y newton realizaron la misma cantidad de iteraciones, alcanzando el mismo valor 1.1999921875
 Secante realizo 15 iteraciones (la mayor de todos) y llego al valor 2.000825
 El metodo que se comporta mejor entre los 4 es Newton mejorado, converge en 1 iteración con el valor exacto 2.
 
 # 6.5 ¿Cómo influyen el intervalo inicial y la estimación inicial en la cantidad de iteraciones y en si el método converge?
-Con los metodos cerrados conviene utilizar intervalos pequeños, esto para reducir la cantidad de iteraciones totales en el caso de la bisección y para una convergencia rapida en el caso de la falsa posicion, por otro lado, en los metodos abiertos como la secante, si x0 se esta muy alejado de la raiz existe la posibilidad de que diverga o que no garantice que el metodo converga.
+teoricamente con los metodos cerrados conviene utilizar intervalos pequeños, esto para reducir la cantidad de iteraciones totales en el caso de la bisección y para una convergencia rapida en el caso de la falsa posicion, por otro lado, en los metodos abiertos como la secante, si x0 se esta muy alejado de la raiz existe la posibilidad de que diverga o que no garantice que el metodo converga.
 
 # 6.6 ¿Qué método recomiendan según el tipo de función, considerando el compromiso entre velocidad y robustez?
 Para las funciones ya vistas, puede recomendarse un metodo de acuerdo a los experimentos realizados y a los datos recopilados en las tablas .csv y con los graficos de una forma mas visual.
@@ -82,6 +84,22 @@ Para las funciones ya vistas, puede recomendarse un metodo de acuerdo a los expe
 6. Mixta: El metodo de la secante es la mas rapida y precisa entre los 3 mejores candidatos (secante, newton mejorado, falsa posicion).
 
 # Conclusion
+
+Definir un metodo definitivo para cada tipo de funcion es arriesgado, ya que dependiendo de lo que se busca principalmente, entre menores iteraciones o mayor precision, existen opciones totalmente distintas.
+- El metodo de bisección demuestra siempre encontrar la raiz mientras exista un cambio de signo (polinomica doble no aplica en este caso), a cambio de esto, sacrifica una mayor cantidad de iteraciones independiente de la funcion en la que se aplica.
+- Falsa posicion demuestra ser más rapida en todos los casos respecto a bisección, pero sacrifica precision en algunos.
+- Newton es efectivo en la mayoria de funciones pero se ve opacada ampliamente por newton mejorado en el caso de las funciones polinomicas dobles.
+- Punto fijo con su complejidad lineal demuestra ser consistente pero tardado en algunos casos.
+- Y finalmente el metodo de la secante rivaliza con newton en la mayoria de funciones.
+
+Si debiera escoger un metodo para usar en todos los tipos de funciones, eligiria newton mejorado por nivel de precision, rapidez y costo computacional.
+
+En la raiz doble los metodos cerrados no pueden ser aplicados, debido a que el teorema en el que se basan no se cumple nunca al no existir cambio de signo en ninguna iteracion. Que el teorema no se cumpla NO signica que no exista una raiz dentro del intervalo, en otras palabras:
+- Si existe cambio de signo, Bolzano se cumple, lo que nos ASEGURA que existe una raiz en el intervalo
+- Si existe una raiz, NO NOS ASEGURA que hay un cambio de signo en el intervalo
+Esta es una ventaja de los metodos abiertos frente a los cerrados, los cuales no son aplicables en este tipo de funcion.
+
+Al mover la estimacion inicial de Newton-Raphson mejorado existen 2 escenarios, en el de la polinomica doble no existen diferencias en la cantidad de iteraciones, mientras que en el resto de funciones dependeria de la distancia de x0 hasta la raiz misma (sin escapar de una cota determinada a la raiz), tardando más pero teniendo el mismo nivel de precision.
 
 # Graficos (src/assets)
 Graficos de convergencia y de raices generados:
